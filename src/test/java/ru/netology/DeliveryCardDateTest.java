@@ -8,9 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
 import ru.netology.utils.DataGenerator;
 
-
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class DeliveryCardDateTest {
 
@@ -54,9 +52,8 @@ public class DeliveryCardDateTest {
         form.$("[data-test-id='date'] input").setValue(secondMeetingDay);
         form.$(".button__content").click();
         $("[data-test-id='replan-notification']").shouldHave(Condition.text("У вас уже запланирована встреча на другую дату. Перепланировать? "));
-        $("[data-test-id='replan-notification']").click();
+        $x("//span[text()='Перепланировать']").click();
         $("[data-test-id='success-notification']").shouldHave(Condition.text("Встреча успешно запланирована на " + secondMeetingDay));
-
     }
 }
 
